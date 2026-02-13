@@ -108,11 +108,9 @@
       font-weight:600;
     }
 
-    .helper-text{
-      font-size:12px;
-      color:#6b7280;
-      margin-top:6px;
-      line-height:1.4;
+    .required{
+      color:#dc2626;
+      font-weight:700;
     }
 
     input, textarea, select{
@@ -194,7 +192,6 @@
   <div class="wrap">
 
     <div class="header">
-
       <div class="logo-bar">
         <img class="brand-logo" src="./activewills-logo.png" alt="ActiveWills" />
         <div class="logo-subtext">
@@ -206,7 +203,6 @@
         <h1>Request a call back</h1>
         <p>Please enter the required details below and a member of our team will contact you shortly.</p>
       </div>
-
     </div>
 
     <div class="card">
@@ -216,36 +212,38 @@
 
         <div class="grid">
           <div class="row">
-            <label>Full name</label>
-            <input name="full_name" type="text" required />
-            <div class="helper-text">Please enter your full name as it appears on your documents.</div>
+            <label>Full name <span class="required">*</span></label>
+            <input name="full_name" type="text"
+              placeholder="Please enter your full name as it appears on your documents"
+              required />
           </div>
 
           <div class="row">
-            <label>Email</label>
-            <input name="email" type="email" required />
-            <div class="helper-text">We will use this email address to confirm your appointment if needed.</div>
+            <label>Email <span class="required">*</span></label>
+            <input name="email" type="email"
+              placeholder="Enter your email address so we can confirm your appointment"
+              required />
           </div>
 
           <div class="row">
-            <label>Phone</label>
-            <input name="phone" type="tel" required />
-            <div class="helper-text">Please provide the best contact number for your requested time.</div>
+            <label>Phone <span class="required">*</span></label>
+            <input name="phone" type="tel"
+              placeholder="Please provide the best contact number for your requested time"
+              required />
           </div>
 
           <div class="row">
-            <label>Do you currently have a Will?</label>
+            <label>Do you currently have a Will? <span class="required">*</span></label>
             <select name="has_will" required>
               <option value="" selected disabled>Select one</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
               <option value="Not sure">Not sure</option>
             </select>
-            <div class="helper-text">This helps us prepare for your consultation.</div>
           </div>
 
           <div class="row">
-            <label>Preferred callback date</label>
+            <label>Preferred callback date <span class="required">*</span></label>
             <input name="callback_date" type="date" required />
             <div class="callout">
               Our callback service is available Monday to Friday, 09:00 – 17:00.
@@ -254,20 +252,19 @@
           </div>
 
           <div class="row">
-            <label>Preferred callback time</label>
+            <label>Preferred callback time <span class="required">*</span></label>
             <select name="callback_time" required>
               <option value="" selected disabled>Select one</option>
               <option value="09:00 - 13:00">09:00 - 13:00</option>
               <option value="13:00 - 17:00">13:00 - 17:00</option>
             </select>
-            <div class="helper-text">We will aim to call you within your selected time window.</div>
           </div>
         </div>
 
         <div class="row">
-          <label>Message (optional)</label>
-          <textarea name="message" placeholder="Anything we should know before we call?"></textarea>
-          <div class="helper-text">You can share any additional details that may help our team prepare.</div>
+          <label>Additional details (optional)</label>
+          <textarea name="message"
+            placeholder="Please share any additional information that may help our team prepare before calling you."></textarea>
         </div>
 
         <div class="important">
