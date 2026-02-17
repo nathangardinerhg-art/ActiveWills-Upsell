@@ -240,7 +240,7 @@
     <div class="header">
       <img class="brand-logo" src="./Honey_logo.png" alt="Honey Legal" />
       <div class="title">
-        <!-- ADDED IDs BELOW (only change in header HTML) -->
+        <!-- IDs added so we can change header text on thank-you -->
         <h1 id="pageTitle">Request a call back</h1>
         <p id="pageSubtitle">Please enter the required details below and a member of our team will contact you shortly.</p>
       </div>
@@ -250,6 +250,7 @@
 
       <div id="formView">
         <form id="leadForm">
+          <!-- Bot honeypot -->
           <input class="hidden" type="text" id="company" name="company" autocomplete="off" tabindex="-1" />
           <input type="hidden" name="source" value="activewills-lpa-to-will-upsell" />
 
@@ -270,8 +271,8 @@
             </div>
 
             <div class="row">
-              <label>Do you currently have a Will? <span class="required">*</span></label>
-              <select name="has_will" required>
+              <label>Do you currently LPAs in place? <span class="required">*</span></label>
+              <select name="has_lpas" required>
                 <option value="" selected disabled>Select one</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -363,8 +364,6 @@
 
     const formView = document.getElementById("formView");
     const thanksView = document.getElementById("thanksView");
-
-    // NEW: header elements we will update only after success
     const pageTitle = document.getElementById("pageTitle");
     const pageSubtitle = document.getElementById("pageSubtitle");
 
@@ -372,6 +371,13 @@
       e.preventDefault();
       const statusEl = document.getElementById("status");
       statusEl.textContent = "Submitting...";
+
+      // Honeypot check
+      const company = document.getElementById("company").value;
+      if (company && company.trim() !== "") {
+        statusEl.textContent = "Submitted successfully. Thank you.";
+        return;
+      }
 
       const data = Object.fromEntries(new FormData(e.target).entries());
 
@@ -395,7 +401,7 @@
         formView.classList.add("hidden");
         thanksView.classList.remove("hidden");
 
-        // NEW: Update header text for the thank you state
+        // Update header for thank you view only
         pageTitle.textContent = "Thank you";
         pageSubtitle.textContent = "Your callback request has been received. A member of our team will contact you during your selected time window.";
 
